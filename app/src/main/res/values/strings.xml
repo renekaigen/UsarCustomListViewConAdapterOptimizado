@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">UsarCustomListViewConAdapterOptimizado</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="titulos">
+        <item>link</item>
+        <item>zelda</item>
+        <item>sheik</item>
+        <item>ganondorf</item>
+        <item>girahim</item>
+        <item>toon link</item>
+        <item>toon zelda</item>
+    </string-array>
+
+
+    <string-array name="descripciones">
+        <item>Heroe del tiempo</item>
+        <item>Princesa de Hyrule</item>
+        <item>Zelda convertida en un sheika</item>
+        <item>El rey de los gerudos</item>
+        <item>Subdito de Demmise</item>
+        <item>Link de wind waker</item>
+        <item>Zelda de wind waker</item>
+    </string-array>
+</resources>
