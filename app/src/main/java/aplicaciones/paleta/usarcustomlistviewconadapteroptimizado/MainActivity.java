@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,6 +53,17 @@ public class MainActivity extends ActionBarActivity {
             this.imagen=imagen;
         }
 
+    }
+
+    class MiViewHolder{
+        ImageView miImagen;
+        TextView miTitulo;
+        TextView miDescripcion;
+        MiViewHolder(View v){
+            miImagen=(ImageView) v.findViewById(R.id.imagenZelda);
+            miTitulo=(TextView) v.findViewById(R.id.titulo);
+            miDescripcion=(TextView) v.findViewById(R.id.descripcion);
+        }
     }
 
     class miAdaptadorPersonalizado extends BaseAdapter{
@@ -106,14 +118,33 @@ public class MainActivity extends ActionBarActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             /*Aqui la magia*/
 
+            View row=convertView;
+            MiViewHolder holder=null;
+            if(row==null){
+                LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                row=inflater.inflate(R.layout.mi_fila,parent,false); //contiene una referencia al RelativeLayout
+                holder= new MiViewHolder(row);
+                row.setTag(holder);
+                Log.d("ZELDA", "Creando una nueva fila");
+            }
+            else{
+                holder=  (MiViewHolder) row.getTag();
+                Log.d("ZELDA", "Reciclando cosas");
+            }
+            miFilaSimple temp=lista.get(position);
+            holder.miTitulo.setText(temp.titulo);
+            holder.miDescripcion.setText(temp.descripcion);
+            holder.miImagen.setImageResource(temp.imagen);
 
-            /*
+
+
+            /* VERSION SIN OPTIMIZACION Inicializar el layout inlfater */
+             /*
                1- Obtener el root view (seria el relativeLayout de buestro mi_fila.xml
                2- usar el root view para encontrar las otras views
                 3- Establecer los valores
             * */
-
-            //Inicializar el layout inlfater
+            /*
             LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View row=inflater.inflate(R.layout.mi_fila,parent,false); //contiene una referencia al RelativeLayout
             TextView titulo=(TextView)row.findViewById(R.id.titulo);
@@ -124,6 +155,7 @@ public class MainActivity extends ActionBarActivity {
             titulo.setText(temp.titulo);
             descripcion.setText(temp.descripcion);
             imagen.setImageResource(temp.imagen);
+            */
 
 
 
